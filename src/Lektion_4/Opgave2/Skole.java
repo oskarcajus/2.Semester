@@ -1,0 +1,57 @@
+package Lektion_4.Opgave2;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+
+public class Skole {
+	private String navn;
+	private HashSet<Studerende> studerende = new HashSet<Studerende>();
+	
+	public Skole (String navn) {
+		this.navn = navn;
+	}
+	
+	public String getNavn() {
+		return this.navn;
+	}
+	
+	public HashSet<Studerende> getStuderende() {
+		return new HashSet<Studerende>(this.studerende);
+	}
+	
+	public Studerende addStuderende(Studerende studerende) {
+		this.studerende.add(studerende);
+		return studerende;
+	}
+	
+	
+	public Studerende removeStuderende(Studerende studerende) {
+		if (this.studerende.contains(studerende)) {
+			this.studerende.remove(studerende);
+		}
+		return studerende;
+	}
+	
+	public double gennemsnit() {
+		double karakterGennemsnitSum = 0;
+		for (Studerende s : this.studerende) {
+			karakterGennemsnitSum += s.gennemsnitKarakter();
+			
+		}
+		return karakterGennemsnitSum / this.studerende.size();
+	}
+	
+	public Studerende findStuderende(int studieNr) {
+		for (Studerende s : this.studerende) {
+			if (s.getStudieNr() == studieNr) {
+				return s;
+			}
+		}
+		return null;
+	}
+	
+	public String toString() {
+		return this.navn;
+	}
+}
